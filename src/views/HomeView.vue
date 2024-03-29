@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import LightBars from "@/components/LightBars/LightBars.vue";
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <h1 class="text-3xl font-bold underline">
+      Hello world!
+    </h1>
+    <LightBars />
   </main>
 </template>
