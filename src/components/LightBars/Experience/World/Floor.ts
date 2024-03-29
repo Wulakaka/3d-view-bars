@@ -1,7 +1,10 @@
 import Experience from '../Experience.ts'
 import * as THREE from 'three'
+import floorVertexShader from '@/shaders/floor/vertex.glsl'
+import floorFragmentShader from '@/shaders/floor/fragment.glsl'
 
 export default class Floor {
+  material: THREE.ShaderMaterial
   constructor() {
     this.experience = new Experience()
     this.scene = this.experience.scene
@@ -15,7 +18,7 @@ export default class Floor {
   }
 
   setGeometry() {
-    this.geometry = new THREE.CircleGeometry(5, 64)
+    this.geometry = new THREE.PlaneGeometry(1, 1, 1, 1)
   }
 
   setTextures() {
@@ -34,15 +37,21 @@ export default class Floor {
   }
 
   setMaterial() {
-    this.material = new THREE.MeshBasicMaterial({
-      // map: this.textures.color,
-      // normalMap: this.textures.normal,
-      color: '#211d20',
+    this.material = new THREE.ShaderMaterial({
+      vertexShader: floorVertexShader,
+      fragmentShader: floorFragmentShader,
+      uniforms: {
+        uColorFrom: new THREE.Uniform(new THREE.Color('#07FE78')),
+        uColorTo: new THREE.Uniform(new THREE.Color('#2536C6'))
+      },
+      transparent: true
     })
   }
 
   setMesh() {
     this.mesh = new THREE.Mesh(this.geometry, this.material)
+    this.mesh.scale.set(12, 12, 1)
+    // 变成地面
     this.mesh.rotation.x = -Math.PI * 0.5
     // this.mesh.receiveShadow = true
     this.scene.add(this.mesh)
