@@ -3,11 +3,18 @@ import * as THREE from 'three'
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js'
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js'
 import { GlitchPass } from 'three/addons/postprocessing/GlitchPass.js'
-import { OutputPass } from 'three/addons/postprocessing/OutputPass.js'
-import { SMAAPass } from 'three/examples/jsm/postprocessing/SMAAPass.js'
-import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js'
+import type GUI from 'lil-gui'
 
 export default class Renderer {
+  experience: Experience
+  canvas: Experience['canvas']
+  sizes: Experience['sizes']
+  scene: Experience['scene']
+  camera: Experience['camera']
+  debug: Experience['debug']
+  instance!: THREE.WebGLRenderer
+  composer!: EffectComposer
+  debugFolder!: GUI
   constructor() {
     this.experience = new Experience()
     this.canvas = this.experience.canvas
@@ -17,7 +24,7 @@ export default class Renderer {
     this.debug = this.experience.debug
 
     if (this.debug.active) {
-      this.debugFolder = this.debug.ui.addFolder('renderer')
+      this.debugFolder = this.debug.ui!.addFolder('renderer')
     }
 
     this.setInstance()
@@ -29,13 +36,12 @@ export default class Renderer {
     this.instance = new THREE.WebGLRenderer({
       canvas: this.canvas,
       antialias: true,
-      alpha: true,
+      alpha: true
     })
     this.instance.toneMapping = THREE.CineonToneMapping
     this.instance.toneMappingExposure = 1.75
     this.instance.shadowMap.enabled = true
     this.instance.shadowMap.type = THREE.PCFSoftShadowMap
-    // this.instance.setClearColor('#211d20')
     this.instance.setSize(this.sizes.width, this.sizes.height)
     this.instance.setPixelRatio(this.sizes.pixelRatio)
   }
@@ -52,22 +58,6 @@ export default class Renderer {
       this.debugFolder.add(glitchPass, 'enabled').name('glitchEnabled')
     }
     this.composer.addPass(glitchPass)
-
-    const smaaPass = new SMAAPass()
-    if (this.debug.active) {
-      this.debugFolder.add(smaaPass, 'enabled').name('SMAAEnabled')
-    }
-    this.composer.addPass(smaaPass)
-
-    const unrealBloomPass = new UnrealBloomPass()
-    unrealBloomPass.enabled = false
-    if (this.debug.active) {
-      this.debugFolder.add(unrealBloomPass, 'enabled').name('unrealBloomEnabled')
-    }
-    this.composer.addPass(unrealBloomPass)
-
-    const outputPass = new OutputPass()
-    this.composer.addPass(outputPass)
   }
 
   resize() {

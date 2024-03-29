@@ -5,6 +5,9 @@ import Experience from './Experience/Experience'
 const container = ref()
 onMounted(() => {
   const instance = new Experience(container.value)
+  instance.resources.ready.then(() => {
+    instance.world.updateBars([5, 1, 3, 4, 6, 0.5, 5, 11])
+  })
 })
 </script>
 

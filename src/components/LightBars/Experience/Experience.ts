@@ -5,27 +5,36 @@ import Camera from './Camera'
 import Debug from './Utils/Debug'
 import Renderer from './Renderer'
 import World from './World/World'
+import Resources from './Utils/Resources'
+import sources from './sources'
 
 let instance: Experience | null = null
 
 export default class Experience {
-  canvas: HTMLCanvasElement
-  time: Time
-  sizes: Sizes
-  scene: THREE.Scene
+  canvas!: HTMLCanvasElement
+  debug!: Debug
+  sizes!: Sizes
+  time!: Time
+  scene!: THREE.Scene
+  resources!: Resources
+  camera!: Camera
+  renderer!: Renderer
+  world!: World
 
-  constructor(canvas: HTMLCanvasElement) {
+  constructor(canvas?: HTMLCanvasElement) {
     if (instance) return instance
-
     instance = this
 
-    this.canvas = canvas
+    if (canvas) {
+      this.canvas = canvas
+    }
 
     // Setup
     this.debug = new Debug()
     this.sizes = new Sizes(380, 320)
     this.time = new Time()
     this.scene = new THREE.Scene()
+    this.resources = new Resources(sources)
     this.camera = new Camera()
     this.renderer = new Renderer()
     this.world = new World()
@@ -65,7 +74,7 @@ export default class Experience {
 
     // destroy debug
     if (this.debug.active) {
-      this.debug.ui.destroy()
+      this.debug.ui!.destroy()
     }
   }
 }

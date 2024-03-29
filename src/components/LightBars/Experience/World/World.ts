@@ -1,26 +1,32 @@
-import Experience from '../Experience.ts'
-// import Environment from './Environment.js'
+import Experience from '../Experience'
 import Floor from './Floor'
-// import Fox from './Fox.js'
+import Bar from './Bar'
+import Environment from './Environment'
+import Bars from '@/components/LightBars/Experience/World/Bars'
 
 export default class World {
+  experience: Experience
+  scene: Experience['scene']
+  resources: Experience['resources']
+  environment: Environment
+  floor: Floor
+  bars: Bars
   constructor() {
     this.experience = new Experience()
     this.scene = this.experience.scene
-    // this.resources = this.experience.resources
+    this.resources = this.experience.resources
 
-    this.floor = new Floor()
-
-    // this.resources.on('ready', () => {
-    //   // Setup
-    //   // 由于 environment 初始化时会更新场景中的所有材质，所以需要在 environment 初始化前加载 floor
-    //   this.floor = new Floor()
-    //   this.fox = new Fox()
-    //   this.environment = new Environment()
-    // })
+    this.resources.on('ready', () => {
+      console.log('ready')
+      this.floor = new Floor()
+      this.environment = new Environment()
+      this.bars = new Bars()
+    })
   }
 
-  update() {
-    // this.fox?.update()
+  update() {}
+
+  updateBars(scales: number[]) {
+    this.bars.updateBars(scales)
   }
 }
