@@ -2,8 +2,8 @@ import * as THREE from 'three'
 import Bar from '@/components/LightBars/Experience/World/Bar'
 
 export default class BarTranslucent extends Bar {
-  constructor(geometry: THREE.BoxGeometry, position: [number, number], color: string) {
-    super(geometry, position, color)
+  constructor(geometry: THREE.BoxGeometry, color: string, group: THREE.Group) {
+    super(geometry, color, group)
   }
 
   setTextures() {
@@ -20,16 +20,5 @@ export default class BarTranslucent extends Bar {
       alphaMap: this.textures.alpha,
       transparent: true
     })
-  }
-
-  setMesh() {
-    const [x, z] = this.position
-    this.mesh = new THREE.Mesh(this.geometry, this.material)
-    this.mesh.position.set(x, 0, z)
-    this.scene.add(this.mesh)
-  }
-
-  updateScale(scale: number) {
-    this.mesh.scale.y = scale
   }
 }

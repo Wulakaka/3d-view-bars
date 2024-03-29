@@ -2,7 +2,6 @@ import Experience from '../Experience'
 import * as THREE from 'three'
 
 export default class Bar {
-  position: [number, number]
   color: string
   experience: Experience
   scene: Experience['scene']
@@ -13,13 +12,14 @@ export default class Bar {
   textures!: {
     [name: string]: THREE.Texture
   }
-  constructor(geometry: THREE.BoxGeometry, position: [number, number], color: string) {
+  group: THREE.Group
+  constructor(geometry: THREE.BoxGeometry, color: string, group: THREE.Group) {
     this.geometry = geometry
-    this.position = position
     this.color = color
     this.experience = new Experience()
     this.scene = this.experience.scene
     this.resources = this.experience.resources
+    this.group = group
 
     // Setup
     // this.setGeometry()
@@ -33,15 +33,13 @@ export default class Bar {
   setMaterial() {
     this.material = new THREE.MeshStandardMaterial({
       color: this.color,
-      transparent: true,
+      transparent: true
     })
   }
 
   setMesh() {
-    const [x, z] = this.position
     this.mesh = new THREE.Mesh(this.geometry, this.material)
-    this.mesh.position.set(x, 0, z)
-    this.scene.add(this.mesh)
+    this.group.add(this.mesh)
   }
 
   updateScale(scale: number) {

@@ -1,8 +1,8 @@
 import Experience from '../Experience'
 import Floor from './Floor'
 import Environment from './Environment'
-import Bars from '@/components/LightBars/Experience/World/Bars'
 import TextBottom from '@/components/LightBars/Experience/World/TextBottom'
+import Corners from '@/components/LightBars/Experience/World/Corners'
 
 export default class World {
   experience: Experience
@@ -10,7 +10,7 @@ export default class World {
   resources: Experience['resources']
   environment!: Environment
   floor!: Floor
-  bars!: Bars
+  corners!: Corners
   textBottom!: TextBottom
   constructor() {
     this.experience = new Experience()
@@ -20,7 +20,7 @@ export default class World {
     this.resources.on('ready', () => {
       this.floor = new Floor()
       this.environment = new Environment()
-      this.bars = new Bars()
+      this.corners = new Corners()
       this.textBottom = new TextBottom('ABC')
     })
   }
@@ -28,6 +28,6 @@ export default class World {
   update() {}
 
   updateBars(scales: number[]) {
-    this.bars.updateBars(scales)
+    this.corners.updateBars(scales)
   }
 }
