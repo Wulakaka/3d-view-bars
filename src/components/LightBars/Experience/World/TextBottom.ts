@@ -1,39 +1,27 @@
-import { TextGeometry } from 'three/addons/geometries/TextGeometry.js'
-import Experience from '@/components/LightBars/Experience/Experience'
 import * as THREE from 'three'
-
+import Text from './Text'
+import Experience from '@/components/LightBars/Experience/Experience'
 export default class TextBottom {
   experience: Experience
-  resources: Experience['resources']
   scene: Experience['scene']
-  geometry!: TextGeometry
-  material!: THREE.MeshBasicMaterial
-  mesh!: THREE.Mesh
-  constructor() {
+  text: Text[]
+  group: THREE.Group
+  constructor(text: string) {
     this.experience = new Experience()
-    this.resources = this.experience.resources
     this.scene = this.experience.scene
+    this.group = new THREE.Group()
+    this.scene.add(this.group)
 
-    this.setGeometry()
-    this.setMaterial()
-    this.setMesh()
-  }
+    const size = 1.5
+    const lineHeight = size * 1.2
 
-  setGeometry() {
-    this.geometry = new TextGeometry('A', {
-      font: this.resources.items['helvetiker_bold']!
+    const t = text.split('')
+    this.text = t.map((t) => new Text(t, size, this.group))
+    this.text.forEach((t, index) => {
+      t.mesh.rotation.x = -Math.PI / 2
+      t.mesh.rotation.z = Math.PI / 2
+      t.mesh.position.x = index * lineHeight + lineHeight / 2
     })
-  }
-
-  setMaterial() {
-    this.material = new THREE.MeshBasicMaterial({
-      color: new THREE.Color('white')
-    })
-  }
-
-  setMesh() {
-    this.mesh = new THREE.Mesh(this.geometry, this.material)
-    this.mesh.scale.set(0.01, 0.01, 0.001)
-    this.scene.add(this.mesh)
+    this.group.position.x -= (this.text.length * lineHeight) / 2
   }
 }

@@ -1,6 +1,5 @@
 import Experience from '../Experience'
 import Floor from './Floor'
-import Bar from './Bar'
 import Environment from './Environment'
 import Bars from '@/components/LightBars/Experience/World/Bars'
 import TextBottom from '@/components/LightBars/Experience/World/TextBottom'
@@ -19,11 +18,10 @@ export default class World {
     this.resources = this.experience.resources
 
     this.resources.on('ready', () => {
-      console.log('ready')
       this.floor = new Floor()
       this.environment = new Environment()
       this.bars = new Bars()
-      this.textBottom = new TextBottom()
+      this.textBottom = new TextBottom('ABC')
     })
   }
 
