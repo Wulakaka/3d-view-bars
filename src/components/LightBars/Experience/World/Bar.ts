@@ -33,7 +33,7 @@ export default class Bar {
   setMaterial() {
     this.material = new THREE.MeshStandardMaterial({
       color: this.color,
-      transparent: true
+      transparent: true,
     })
   }
 

@@ -31,7 +31,8 @@ export default class Floor {
         uColorFrom: new THREE.Uniform(new THREE.Color('#2536C6')),
         uColorTo: new THREE.Uniform(new THREE.Color('#07FE78'))
       },
-      transparent: true
+      transparent: true,
+      side: THREE.DoubleSide
     })
   }
 

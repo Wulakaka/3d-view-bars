@@ -1,10 +1,13 @@
-import alpha60 from '@/textures/alpha/alpha60.png'
-
 export default [
   {
     name: 'alpha60',
     type: 'texture',
-    path: alpha60
+    path: 'textures/alpha/alpha60.png'
+  },
+  {
+    name: 'helvetiker_bold',
+    type: 'font',
+    path: 'fonts/helvetiker_bold.typeface.json'
   }
 
   // {
