@@ -1,6 +1,5 @@
 import * as THREE from 'three'
 import Bar from '@/components/LightBars/Experience/World/Bar'
-import BarTranslucent from '@/components/LightBars/Experience/World/BarTranslucent'
 import Experience from '@/components/LightBars/Experience/Experience'
 import Text from '@/components/LightBars/Experience/World/Text'
 
@@ -13,7 +12,7 @@ export default class Corner {
   geometrySolid: THREE.BoxGeometry
   geometryTranslucent: THREE.BoxGeometry
   barSolid!: Bar
-  barTranslucent!: BarTranslucent
+  barTranslucent!: Bar
   text!: Text
   constructor(
     position: [number, number],
@@ -39,11 +38,14 @@ export default class Corner {
   }
 
   setBarSolid() {
-    this.barSolid = new Bar(this.geometrySolid, this.color, this.group)
+    this.barSolid = new Bar(this.geometrySolid, this.color, this.group, 1.0)
+    this.barSolid.mesh.position.y = 0.001
+    this.barSolid.mesh.scale.x = 0.5
+    this.barSolid.mesh.scale.z = 0.5
   }
 
   setBarTranslucent() {
-    this.barTranslucent = new BarTranslucent(this.geometryTranslucent, this.color, this.group)
+    this.barTranslucent = new Bar(this.geometryTranslucent, this.color, this.group, 0.5)
   }
 
   setText() {

@@ -42,6 +42,7 @@ export default class Floor {
     // 变成地面
     this.mesh.rotation.x = -Math.PI * 0.5
     this.mesh.rotation.z = Math.PI * 0.5
+    this.mesh.position.y = -0.001
     this.scene.add(this.mesh)
   }
 }

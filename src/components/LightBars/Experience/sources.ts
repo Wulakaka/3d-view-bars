@@ -1,9 +1,9 @@
 export default [
-  {
-    name: 'alpha60',
-    type: 'texture',
-    path: 'textures/alpha/alpha60.png'
-  },
+  // {
+  //   name: 'alpha60',
+  //   type: 'texture',
+  //   path: 'textures/alpha/alpha60.png'
+  // },
   {
     name: 'helvetiker_bold',
     type: 'font',

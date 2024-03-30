@@ -13,13 +13,15 @@ export default class Bar {
     [name: string]: THREE.Texture
   }
   group: THREE.Group
-  constructor(geometry: THREE.BoxGeometry, color: string, group: THREE.Group) {
+  opacity: number
+  constructor(geometry: THREE.BoxGeometry, color: string, group: THREE.Group, opacity: number) {
     this.geometry = geometry
     this.color = color
     this.experience = new Experience()
     this.scene = this.experience.scene
     this.resources = this.experience.resources
     this.group = group
+    this.opacity = opacity
 
     // Setup
     // this.setGeometry()
@@ -33,7 +35,10 @@ export default class Bar {
   setMaterial() {
     this.material = new THREE.MeshStandardMaterial({
       color: this.color,
-      transparent: true
+      depthWrite: false,
+      // depthTest: false,
+      transparent: true,
+      opacity: this.opacity
     })
   }
 
