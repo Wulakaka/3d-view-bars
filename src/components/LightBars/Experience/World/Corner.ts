@@ -40,8 +40,8 @@ export default class Corner {
   setBarSolid() {
     this.barSolid = new Bar(this.geometrySolid, this.color, this.group, 1.0)
     this.barSolid.mesh.position.y = 0.001
-    this.barSolid.mesh.scale.x = 0.5
-    this.barSolid.mesh.scale.z = 0.5
+    // this.barSolid.mesh.scale.x = 0.5
+    // this.barSolid.mesh.scale.z = 0.5
   }
 
   setBarTranslucent() {
