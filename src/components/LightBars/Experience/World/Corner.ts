@@ -59,6 +59,10 @@ export default class Corner {
     this.scene.add(this.group)
   }
 
+  update() {
+    this.text.mesh.lookAt(this.experience.camera.instance.position)
+  }
+
   updateHeight(a: number, b: number) {
     const min = Math.min(a, b)
     this.barOverlapped.updateScale(min)

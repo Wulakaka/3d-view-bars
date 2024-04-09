@@ -25,6 +25,12 @@ export default class Corners {
     this.geometry.translate(0, 0.5, 0)
   }
 
+  update() {
+    this.corners.forEach((corner) => {
+      corner.update()
+    })
+  }
+
   updateBars(scales: number[]) {
     this.corners.forEach((corner, i) => {
       corner.updateHeight(scales[i], scales[i + 4])

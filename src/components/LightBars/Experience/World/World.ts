@@ -25,7 +25,9 @@ export default class World {
     })
   }
 
-  update() {}
+  update() {
+    this.corners?.update()
+  }
 
   updateBars(scales: number[]) {
     this.experience.camera.updateCameraTargetY(Math.max(...scales) / 2)
