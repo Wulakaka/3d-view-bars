@@ -6,7 +6,7 @@ const container = ref()
 onMounted(() => {
   const instance = new Experience(container.value)
   instance.resources.ready.then(() => {
-    instance.world.updateBars([5, 1, 3, 4, 3, 3, 5, 11])
+    instance.world.updateBars([5, 1, 3, 4, 3, 3, 5, 10])
   })
 })
 </script>

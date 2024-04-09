@@ -1,51 +1,28 @@
 import * as THREE from 'three'
 import Corner from '@/components/LightBars/Experience/World/Corner'
+import Experience from '@/components/LightBars/Experience/Experience'
 
 export default class Corners {
-  geometrySolid!: THREE.BoxGeometry
-  geometryTranslucent!: THREE.BoxGeometry
+  experience: Experience
+  scene: Experience['scene']
+  geometry!: THREE.BoxGeometry
   corners: Corner[]
   constructor() {
+    this.experience = new Experience()
+    this.scene = this.experience.scene
     this.setGeometry()
 
     this.corners = [
-      new Corner(
-        [-5.5, 5.5],
-        'rgb(52, 163, 224)',
-        'A',
-        this.geometrySolid,
-        this.geometryTranslucent
-      ),
-      new Corner(
-        [-5.5, -5.5],
-        'rgb(198, 229, 230)',
-        'B',
-        this.geometrySolid,
-        this.geometryTranslucent
-      ),
-      new Corner(
-        [5.5, 5.5],
-        'rgb(78, 246, 246)',
-        'C',
-        this.geometrySolid,
-        this.geometryTranslucent
-      ),
-      new Corner(
-        [5.5, -5.5],
-        'rgb(217, 224, 33)',
-        'D',
-        this.geometrySolid,
-        this.geometryTranslucent
-      )
+      new Corner([-5.5, 5.5], 'rgb(52, 163, 224)', 'A', this.geometry),
+      new Corner([-5.5, -5.5], 'rgb(198, 229, 230)', 'B', this.geometry),
+      new Corner([5.5, 5.5], 'rgb(78, 246, 246)', 'C', this.geometry),
+      new Corner([5.5, -5.5], 'rgb(217, 224, 33)', 'D', this.geometry)
     ]
   }
 
   setGeometry() {
-    this.geometrySolid = new THREE.BoxGeometry(1, 1, 1, 1, 1, 1)
-    this.geometrySolid.translate(0, 0.5, 0)
-    this.geometryTranslucent = new THREE.BoxGeometry(1, 1, 1, 1, 1, 1)
-    this.geometryTranslucent.translate(0, 0.5, 0)
-    this.geometryTranslucent.scale(1.01, 1, 1.01)
+    this.geometry = new THREE.BoxGeometry(1, 1, 1, 1, 1, 1)
+    this.geometry.translate(0, 0.5, 0)
   }
 
   updateBars(scales: number[]) {

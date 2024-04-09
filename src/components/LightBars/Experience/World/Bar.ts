@@ -2,7 +2,7 @@ import Experience from '../Experience'
 import * as THREE from 'three'
 
 export default class Bar {
-  color: string
+  color: string | THREE.Color
   experience: Experience
   scene: Experience['scene']
   resources: Experience['resources']
@@ -14,7 +14,12 @@ export default class Bar {
   }
   group: THREE.Group
   opacity: number
-  constructor(geometry: THREE.BoxGeometry, color: string, group: THREE.Group, opacity: number) {
+  constructor(
+    geometry: THREE.BoxGeometry,
+    color: string | THREE.Color,
+    group: THREE.Group,
+    opacity: number
+  ) {
     this.geometry = geometry
     this.color = color
     this.experience = new Experience()
@@ -24,7 +29,6 @@ export default class Bar {
     this.opacity = opacity
 
     // Setup
-    // this.setGeometry()
     this.setTextures()
     this.setMaterial()
     this.setMesh()
@@ -35,8 +39,6 @@ export default class Bar {
   setMaterial() {
     this.material = new THREE.MeshStandardMaterial({
       color: this.color,
-      depthWrite: false,
-      // depthTest: false,
       transparent: true,
       opacity: this.opacity
     })
@@ -49,5 +51,9 @@ export default class Bar {
 
   updateScale(scale: number) {
     this.mesh.scale.y = scale
+  }
+
+  updatePositionY(y: number) {
+    this.mesh.position.y = y
   }
 }
