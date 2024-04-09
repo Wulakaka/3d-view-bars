@@ -18,8 +18,8 @@ onMounted(() => {
   instance = new Experience(container.value)
   instance.resources.ready.then(() => {
     watchEffect(() => {
-      const domain = d3.extent(list.value)
-      scale.domain(domain)
+      const max = Math.max(...list.value)
+      scale.domain([0, max])
       instance.world.updateBars(list.value.map((i) => scale(i)))
     })
   })
