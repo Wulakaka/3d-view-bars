@@ -1,6 +1,7 @@
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js'
 import Experience from '@/components/LightBars/Experience/Experience'
 import * as THREE from 'three'
+import { gsap } from 'gsap'
 
 export default class Text {
   experience: Experience
@@ -47,5 +48,12 @@ export default class Text {
   setMesh() {
     this.mesh = new THREE.Mesh(this.geometry, this.material)
     this.group.add(this.mesh)
+  }
+
+  updatePositionY(y: number) {
+    gsap.to(this.mesh.position, {
+      duration: 1,
+      y: y
+    })
   }
 }

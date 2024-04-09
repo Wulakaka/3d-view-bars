@@ -1,12 +1,26 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watchEffect } from 'vue'
+import * as d3 from 'd3'
 import Experience from './Experience/Experience'
 
 const container = ref()
+
+const scale = d3.scaleLinear().range([0, 10])
+
+const list = ref(Array.from({ length: 8 }, () => Math.round(Math.random() * 10)))
+
+setInterval(() => {
+  list.value = list.value.map(() => Math.round(Math.random() * 10))
+}, 3000)
+
 onMounted(() => {
   const instance = new Experience(container.value)
   instance.resources.ready.then(() => {
-    instance.world.updateBars([5, 1, 3, 4, 3, 3, 5, 10])
+    watchEffect(() => {
+      const domain = d3.extent(list.value)
+      scale.domain(domain)
+      instance.world.updateBars(list.value.map((i) => scale(i)))
+    })
   })
 })
 </script>

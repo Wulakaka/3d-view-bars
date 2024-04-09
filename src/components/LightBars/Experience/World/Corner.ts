@@ -62,13 +62,15 @@ export default class Corner {
   updateHeight(a: number, b: number) {
     const min = Math.min(a, b)
     this.barOverlapped.updateScale(min)
-    this.barSolid.updatePositionY(min - 0.01)
-    this.barTranslucent.updatePositionY(min - 0.02)
 
-    this.barSolid.updateScale(Math.max(a - b, 0))
-    this.barTranslucent.updateScale(Math.max(b - a, 0))
+    const solidHeight = Math.max(a - b, 0)
+    const translucentHeight = Math.max(b - a, 0)
+    this.barSolid.updateScale(solidHeight)
+    this.barSolid.updatePositionY(min - 0.01)
+    this.barTranslucent.updateScale(translucentHeight)
+    this.barTranslucent.updatePositionY(min + solidHeight - 0.02)
 
     const max = Math.max(a, b)
-    this.text.mesh.position.y = max + 0.8
+    this.text.updatePositionY(max + 0.8)
   }
 }

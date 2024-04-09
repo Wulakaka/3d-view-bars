@@ -1,5 +1,6 @@
 import Experience from '../Experience'
 import * as THREE from 'three'
+import { gsap } from 'gsap'
 
 export default class Bar {
   color: string | THREE.Color
@@ -50,10 +51,16 @@ export default class Bar {
   }
 
   updateScale(scale: number) {
-    this.mesh.scale.y = scale
+    gsap.to(this.mesh.scale, {
+      duration: 1,
+      y: scale
+    })
   }
 
   updatePositionY(y: number) {
-    this.mesh.position.y = y
+    gsap.to(this.mesh.position, {
+      duration: 1,
+      y: y
+    })
   }
 }
