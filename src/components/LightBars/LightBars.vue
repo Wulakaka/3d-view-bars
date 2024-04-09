@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, watchEffect } from 'vue'
+import { onBeforeUnmount, onMounted, ref, watchEffect } from 'vue'
 import * as d3 from 'd3'
 import Experience from './Experience/Experience'
 
@@ -13,8 +13,9 @@ setInterval(() => {
   list.value = list.value.map(() => Math.round(Math.random() * 10))
 }, 3000)
 
+let instance: Experience
 onMounted(() => {
-  const instance = new Experience(container.value)
+  instance = new Experience(container.value)
   instance.resources.ready.then(() => {
     watchEffect(() => {
       const domain = d3.extent(list.value)
@@ -22,6 +23,10 @@ onMounted(() => {
       instance.world.updateBars(list.value.map((i) => scale(i)))
     })
   })
+})
+
+onBeforeUnmount(() => {
+  instance.destroy()
 })
 </script>
 
