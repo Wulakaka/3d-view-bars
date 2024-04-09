@@ -13,10 +13,10 @@ export default class Corners {
     this.setGeometry()
 
     this.corners = [
-      new Corner([-5.5, 5.5], 'rgb(52, 163, 224)', 'A', this.geometry),
-      new Corner([-5.5, -5.5], 'rgb(198, 229, 230)', 'B', this.geometry),
-      new Corner([5.5, 5.5], 'rgb(78, 246, 246)', 'C', this.geometry),
-      new Corner([5.5, -5.5], 'rgb(217, 224, 33)', 'D', this.geometry)
+      new Corner([-5.5, 5.5], 'rgb(52, 163, 224)', 'A区', this.geometry),
+      new Corner([-5.5, -5.5], 'rgb(198, 229, 230)', 'B区', this.geometry),
+      new Corner([5.5, 5.5], 'rgb(78, 246, 246)', 'C区', this.geometry),
+      new Corner([5.5, -5.5], 'rgb(217, 224, 33)', 'D区', this.geometry)
     ]
   }
 

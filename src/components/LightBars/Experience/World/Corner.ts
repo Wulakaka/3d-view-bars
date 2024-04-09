@@ -50,7 +50,7 @@ export default class Corner {
   }
 
   setText() {
-    this.text = new Text(this.name, 0.8, this.group)
+    this.text = new Text(this.name, 0.6, this.group)
     this.text.mesh.position.y = 2
     this.text.mesh.rotation.y = Math.PI / 4
   }

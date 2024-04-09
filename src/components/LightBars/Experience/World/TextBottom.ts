@@ -13,7 +13,7 @@ export default class TextBottom {
     this.scene.add(this.group)
 
     const size = 1.5
-    const lineHeight = size * 1.2
+    const lineHeight = size * 1.6
 
     const t = text.split('')
     this.text = t.map((t) => new Text(t, size, this.group))

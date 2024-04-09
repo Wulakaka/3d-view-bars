@@ -21,7 +21,7 @@ export default class World {
       this.floor = new Floor()
       this.environment = new Environment()
       this.corners = new Corners()
-      this.textBottom = new TextBottom('ABC')
+      this.textBottom = new TextBottom('绿中庭')
     })
   }
 

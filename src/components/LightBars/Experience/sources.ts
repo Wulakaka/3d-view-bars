@@ -5,9 +5,9 @@ export default [
   //   path: 'textures/alpha/alpha60.png'
   // },
   {
-    name: 'helvetiker_bold',
+    name: 'HYYakuHei 55W_Regular',
     type: 'font',
-    path: 'fonts/helvetiker_bold.typeface.json'
+    path: 'fonts/HYYakuHei 55W_Regular.json'
   }
 
   // {

@@ -26,7 +26,7 @@ export default class Text {
 
   setGeometry() {
     this.geometry = new TextGeometry(this.text, {
-      font: this.resources.items['helvetiker_bold']!,
+      font: this.resources.items['HYYakuHei 55W_Regular']!,
       size: this.size,
       height: 0.1
     })

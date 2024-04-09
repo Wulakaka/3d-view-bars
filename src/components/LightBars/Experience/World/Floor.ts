@@ -1,7 +1,7 @@
 import Experience from '../Experience'
 import * as THREE from 'three'
-import floorVertexShader from '@/shaders/floor/vertex.glsl'
-import floorFragmentShader from '@/shaders/floor/fragment.glsl'
+import floorVertexShader from '@/shaders/floor/vertex.glsl?raw'
+import floorFragmentShader from '@/shaders/floor/fragment.glsl?raw'
 
 export default class Floor {
   geometry!: THREE.PlaneGeometry
