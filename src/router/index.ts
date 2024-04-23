@@ -21,6 +21,11 @@ const router = createRouter({
       path: '/sort',
       name: 'sort',
       component: () => import('../views/SortView/SortView.vue')
+    },
+    {
+      path: '/rxjs',
+      name: 'rxjs',
+      component: () => import('../views/RxjsView/RxjsView.vue')
     }
   ]
 })
