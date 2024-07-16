@@ -26,6 +26,11 @@ const router = createRouter({
       path: '/rxjs',
       name: 'rxjs',
       component: () => import('../views/RxjsView/RxjsView.vue')
+    },
+    {
+      path: '/tank',
+      name: 'tank',
+      component: () => import('../views/TankListView.vue')
     }
   ]
 })
