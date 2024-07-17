@@ -17,10 +17,10 @@ export default class Sizes {
     this.height = height
 
     // Resize event
-    window.addEventListener('resize', this.resizeListener)
+    // window.addEventListener('resize', this.resizeListener)
   }
 
   destroy() {
-    window.removeEventListener('resize', this.resizeListener)
+    // window.removeEventListener('resize', this.resizeListener)
   }
 }

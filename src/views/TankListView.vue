@@ -3,8 +3,8 @@ import CatchmentTank from '@/components/CatchmentTank/CatchmentTank.vue'
 </script>
 
 <template>
-  <div>
-    <CatchmentTank />
+  <div class="flex flex-wrap justify-center h-[90vh] items-center">
+    <CatchmentTank v-for="i in 1" :key="i" />
   </div>
 </template>
 
